@@ -4,7 +4,7 @@ This project takes the already well-containerised (https://hub.docker.com/_/ghos
 It is intended more to be a demo on how to use various AWS services (ECS, Fargate, MySQL RDS w/IAM Auth, CloudFormation, CodeBuild, CodePipeline, etc.) than for actually running a Ghost - but it certainly can do that too.
 
 ## Fargate Pipeline Quick Start Instuctions
-The `quickstart/quickstart.template` Nested Stack CloudFormation template creates:
+The `quickstart/quickstart.json` Nested Stack CloudFormation template creates:
 1. A VPC Stack
 1. The required pre-req IAM roles for ECS in a Stack
 1. An ECS Cluster for Fargate
@@ -40,7 +40,7 @@ A good way to show that Clair works in this scenario is to change the `FROM` lin
 ## Architecture
 All state for Ghost is stored in a MySQL RDS leaving the containers fully stateless.
 
-The `dependencies.template` CloudFormation template: 
+The `dependencies.json` CloudFormation template: 
 1. Creates the encrypted MySQL RDS to store the state and associated KMS key
 1. Creates the IAM roles
 1. Creates the security groups
@@ -48,12 +48,12 @@ The `dependencies.template` CloudFormation template:
 1. Creates the CloudWatch Logs Group for Ghost
 1. Creates a Lamba-backed Custom Resource to set up the database for IAM authentication and add the app's user
 
-The `ghost-deploy-fargate.template` CloudFormation template deploys Ghost to Fargate. This is invoked in the quickstart by the CodePipeline.
+The `ghost-deploy-fargate.json` CloudFormation template deploys Ghost to Fargate. This is invoked in the quickstart by the CodePipeline.
 
-The `ghost-container/ghost-container-build.template` Template sets up a CodeBuild project to build our container image
+The `ghost-container/ghost-container-build.json` Template sets up a CodeBuild project to build our container image
 
-The `ghost-container/ghost-container-build-pipeline.template` Template sets up a CodePipeline to watch the CodeCommit repo and run the build and deploy on changes
+The `ghost-container/ghost-container-build-pipeline.json` Template sets up a CodePipeline to watch the CodeCommit repo and run the build and deploy on changes
 
-The `quickstart/clair-deploy-fargate.template` Template deploys the Clair scanner used by CodeBuild. For more information on that see (https://github.com/jasonumiker/clair-ecs-fargate)
+The `quickstart/clair-deploy-fargate.json` Template deploys the Clair scanner used by CodeBuild. For more information on that see (https://github.com/jasonumiker/clair-ecs-fargate)
 
 These templates were created by using Troposphere (https://github.com/cloudtools/troposphere) in the corresponding `.py` files.

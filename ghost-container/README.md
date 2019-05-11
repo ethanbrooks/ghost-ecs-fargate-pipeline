@@ -5,14 +5,14 @@ This container is already built (using CodeBuild against the buildspec in the fo
 
 NOTE: The changes versus the upstream ghost container may now actually require you to use IAM authentication against the underlying MySQL - I have not tested a non-SSL and/or password login after the changes. 
 ## Instructions
-There is a `buildspec.yml` to build this container in CodeBuild as well as a `ghost-container-build.template` CloudFormation template to fully set up the CodeBuild project to do that build.
+There is a `buildspec.yml` to build this container in CodeBuild as well as a `ghost-container-build.json` CloudFormation template to fully set up the CodeBuild project to do that build.
 
 You also can build it anywhere else using just the `Dockerfile` with a `docker build`.
 
 ## (Optional) Clair-Scanned Build Pipeline
-There is an alternative `buildspec_clair.yml` as well as `ghost-container-build-clair.template` which will set up a build that requires the Ghost container image to pass a Clair scan before succeeding. Clair is an open-sourced scanner by CoreOS that looks for CVEs and security vulnerabilities in Docker images (https://github.com/coreos/clair).
+There is an alternative `buildspec_clair.yml` as well as `ghost-container-build-clair.json` which will set up a build that requires the Ghost container image to pass a Clair scan before succeeding. Clair is an open-sourced scanner by CoreOS that looks for CVEs and security vulnerabilities in Docker images (https://github.com/coreos/clair).
 
-This requires a running Clair and there is a CloudFormation script to deploy that to Fargate at `/clair/clair_deploy_fargate.template`
+This requires a running Clair and there is a CloudFormation script to deploy that to Fargate at `/clair/clair_deploy_fargate.json`
 
 If you want to see Clair find issues and fail a build change the `FROM` in the `Dockerfile` to `node:6.9.4-alpine`
 

@@ -262,7 +262,7 @@ pipeline = t.add_resource(Pipeline(
                                                         "\"DependencyStackName\"",":","\"",Ref(DependencyStackName),"\"",",",
                                                         "\"GhostImage\"",":",
                                                         "{\"Fn::GetParam\" : [\"BuildOutput\",\"images.json\",\"imageUri\"]}","}"]),
-                        "TemplatePath": "BuildOutput::ghost-deploy-fargate.template",
+                        "TemplatePath": "BuildOutput::ghost-deploy-fargate.json",
                         "StackName": "Ghost-Fargate"
                     },
                     RunOrder="1"

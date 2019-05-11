@@ -96,7 +96,7 @@ db_password = t.add_parameter(Parameter(
                     },
                     "Cluster": "Ghost"
                 },
-                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/clair-deploy-fargate.template"
+                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/clair-deploy-fargate.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
@@ -118,7 +118,7 @@ db_password = t.add_parameter(Parameter(
                         ]
                     }
                 },
-                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/cloud9.template"
+                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/cloud9.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
@@ -170,7 +170,7 @@ db_password = t.add_parameter(Parameter(
                         "Ref": "KeyAdminARN"
                     }
                 },
-                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/dependencies.template"
+                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/dependencies.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
@@ -208,7 +208,7 @@ db_password = t.add_parameter(Parameter(
                         ]
                     }
                 },
-                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/ghost-container-build.template"
+                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/ghost-container-build.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
@@ -225,7 +225,7 @@ db_password = t.add_parameter(Parameter(
                     },
                     "ECSClusterName": "Ghost"
                 },
-                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/ghost-container-build-pipeline.template"
+                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/ghost-container-build-pipeline.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
@@ -246,20 +246,20 @@ db_password = t.add_parameter(Parameter(
                         ]
                     }
                 },
-                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/init-codecommit.template"
+                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/init-codecommit.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
         "InitDBLambdaBuild": {
             "Properties": {
-                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/init-db-lambda-build.template"
+                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/init-db-lambda-build.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
         "InitDBLambdaInit": {
             "DependsOn": "InitDBLambdaBuild",
             "Properties": {
-                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/init-db-lambda-init.template"
+                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/init-db-lambda-init.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
@@ -286,7 +286,7 @@ db_password = t.add_parameter(Parameter(
                     },
                     "NumberOfAZs": "2"
                 },
-                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/vpc.template"
+                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/vpc.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         }
@@ -336,12 +336,12 @@ GhostRepo = t.add_resource(codecommit.Repository(
 
 init_db_lambda_build = t.add_resource(cloudformation.Stack(
     "InitDBLambdaBuild",
-    TemplateURL="https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/init-db-lambda-build.template",
+    TemplateURL="https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/init-db-lambda-build.json",
 ))
 
 init_db_lambda_init = t.add_resource(cloudformation.Stack(
     "InitDBLambdaInit",
-    TemplateURL="https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/init-db-lambda-init.template",
+    TemplateURL="https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/init-db-lambda-init.json",
     DependsOn="InitDBLambdaBuild"
 ))
 
@@ -352,7 +352,7 @@ vpc_stack = t.add_resource(cloudformation.Stack(
         "NumberOfAZs": "2",
         "KeyPairName": Ref(keypair_name),
     },
-    TemplateURL="https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/vpc.template",
+    TemplateURL="https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/vpc.json",
 ))
 
 dependencies_stack = t.add_resource(cloudformation.Stack(
@@ -368,7 +368,7 @@ dependencies_stack = t.add_resource(cloudformation.Stack(
         "KeyAdminARN": Ref(key_admin_ARN),
         "CRS3Bucket" : GetAtt(init_db_lambda_build, "Outputs.OutputBucket"),
     },
-    TemplateURL="https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/dependencies.template",
+    TemplateURL="https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/dependencies.json",
     DependsOn="InitDBLambdaInit"
 ))
 
@@ -382,7 +382,7 @@ clair_fargate_stack = t.add_resource(cloudformation.Stack(
         "ClairImage": "jasonumiker/clair:latest",
         "ClairDBPassword": Ref(db_password)
     },
-    TemplateURL="https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/clair-deploy-fargate.template",
+    TemplateURL="https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/clair-deploy-fargate.json",
 ))
 
 ghost_container_build_stack = t.add_resource(cloudformation.Stack(
@@ -393,7 +393,7 @@ ghost_container_build_stack = t.add_resource(cloudformation.Stack(
         "BuildVPC": GetAtt(vpc_stack, "Outputs.VPCID"),
         "ClairURL": GetAtt(clair_fargate_stack, "Outputs.ClairURL"),
     },
-    TemplateURL="https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/ghost-container-build.template",
+    TemplateURL="https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/ghost-container-build.json",
 ))
 
 ghost_container_pipeline_stack = t.add_resource(cloudformation.Stack(
@@ -404,13 +404,13 @@ ghost_container_pipeline_stack = t.add_resource(cloudformation.Stack(
         "ECSClusterName": "Ghost",
         "DependencyStackName": GetAtt(dependencies_stack, "Outputs.StackName"),
     },
-    TemplateURL="https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/ghost-container-build-pipeline.template",
+    TemplateURL="https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/ghost-container-build-pipeline.json",
 ))
 
 init_codecommit_stack = t.add_resource(cloudformation.Stack(
     "InitCodeCommitStack",
     Parameters={"CodeCommitRepoAddr": GetAtt(GhostRepo, "CloneUrlHttp")},
-    TemplateURL="https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/init-codecommit.template",
+    TemplateURL="https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/init-codecommit.json",
     DependsOn="DepdendenciesStack"
 ))
 
@@ -420,7 +420,7 @@ cloud9_stack = t.add_resource(cloudformation.Stack(
         "Subnet": GetAtt(vpc_stack, "Outputs.PublicSubnet1ID"),
         "CodeCommitRepoUrl": GetAtt(GhostRepo, "CloneUrlHttp")
     },
-    TemplateURL="https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/cloud9.template",
+    TemplateURL="https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/cloud9.json",
     DependsOn="InitCodeCommitStack",
     Condition=cloud9_condition
 ))
