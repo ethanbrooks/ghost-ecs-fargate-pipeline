@@ -78,7 +78,7 @@
                     },
                     "Cluster": "Ghost"
                 },
-                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/clair-deploy-fargate.template"
+                "TemplateURL": "https://s3.console.aws.amazon.com/s3/buckets/ebr00ks-cloud-formation-templates/clair-deploy-fargate.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
@@ -100,7 +100,7 @@
                         ]
                     }
                 },
-                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/cloud9.template"
+                "TemplateURL": "https://s3.console.aws.amazon.com/s3/buckets/ebr00ks-cloud-formation-templates/cloud9.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
@@ -152,7 +152,7 @@
                         "Ref": "KeyAdminARN"
                     }
                 },
-                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/dependencies.template"
+                "TemplateURL": "https://s3.console.aws.amazon.com/s3/buckets/ebr00ks-cloud-formation-templates/dependencies.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
@@ -190,7 +190,7 @@
                         ]
                     }
                 },
-                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/ghost-container-build.template"
+                "TemplateURL": "https://s3.console.aws.amazon.com/s3/buckets/ebr00ks-cloud-formation-templates/ghost-container-build.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
@@ -207,7 +207,7 @@
                     },
                     "ECSClusterName": "Ghost"
                 },
-                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/ghost-container-build-pipeline.template"
+                "TemplateURL": "https://s3.console.aws.amazon.com/s3/buckets/ebr00ks-cloud-formation-templates/ghost-container-build-pipeline.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
@@ -228,20 +228,20 @@
                         ]
                     }
                 },
-                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/init-codecommit.template"
+                "TemplateURL": "https://s3.console.aws.amazon.com/s3/buckets/ebr00ks-cloud-formation-templates/init-codecommit.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
         "InitDBLambdaBuild": {
             "Properties": {
-                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/init-db-lambda-build.template"
+                "TemplateURL": "https://s3.console.aws.amazon.com/s3/buckets/ebr00ks-cloud-formation-templates/init-db-lambda-build.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
         "InitDBLambdaInit": {
             "DependsOn": "InitDBLambdaBuild",
             "Properties": {
-                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/init-db-lambda-init.template"
+                "TemplateURL": "https://s3.console.aws.amazon.com/s3/buckets/ebr00ks-cloud-formation-templates/init-db-lambda-init.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
@@ -268,7 +268,7 @@
                     },
                     "NumberOfAZs": "2"
                 },
-                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/vpc.template"
+                "TemplateURL": "https://s3.console.aws.amazon.com/s3/buckets/ebr00ks-cloud-formation-templates/vpc.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         }

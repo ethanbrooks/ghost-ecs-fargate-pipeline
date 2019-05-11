@@ -482,7 +482,7 @@
                                         ]
                                     },
                                     "StackName": "Ghost-Fargate",
-                                    "TemplatePath": "BuildOutput::ghost-deploy-fargate.template"
+                                    "TemplatePath": "BuildOutput::ghost-deploy-fargate.json"
                                 },
                                 "InputArtifacts": [
                                     {
