@@ -55,7 +55,7 @@ db_password = t.add_parameter(Parameter(
             "Type": "String"
         },
         "GhostImage": {
-            "Default": "jasonumiker/ghost:latest",
+            "Default": "ebr00ks/ghost:latest",
             "Description": "The Ghost image to deploy",
             "Type": "String"
         },
@@ -75,7 +75,7 @@ db_password = t.add_parameter(Parameter(
                     "ClairDBPassword": {
                         "Ref": "DBPassword"
                     },
-                    "ClairImage": "jasonumiker/clair:latest",
+                    "ClairImage": "ebr00ks/clair:latest",
                     "ClairSubnet": {
                         "Fn::GetAtt": [
                             "VPCStack",
@@ -300,7 +300,7 @@ ghost_image = t.add_parameter(Parameter(
     "GhostImage",
     Type="String",
     Description="The Ghost image to deploy",
-    Default="jasonumiker/ghost:latest"
+    Default="ebr00ks/ghost:latest"
 ))
 
 key_admin_ARN = t.add_parameter(Parameter(
@@ -379,7 +379,7 @@ clair_fargate_stack = t.add_resource(cloudformation.Stack(
         "ClairSubnet": GetAtt(vpc_stack, "Outputs.PrivateSubnet1AID"),
         "ClairSubnet2": GetAtt(vpc_stack, "Outputs.PrivateSubnet2AID"),
         "ClairVPC": GetAtt(vpc_stack, "Outputs.VPCID"),
-        "ClairImage": "jasonumiker/clair:latest",
+        "ClairImage": "ebr00ks/clair:latest",
         "ClairDBPassword": Ref(db_password)
     },
     TemplateURL="https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/clair-deploy-fargate.json",

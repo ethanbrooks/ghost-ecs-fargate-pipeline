@@ -21,7 +21,7 @@ The only Parameters to provide are:
 1. An EC2 SSH key (must be created before the stack is run)
 1. A password for the RDS DB root user that will be passed to the RDS creation and DB init Lambda. The tasks will then use IAM authentication to the database.
     1. It is hidden in the CF stacks but you can change it after creation if you'd like for maximum security.
-1. The ghost Docker image to pull (you can use jasonumiker/ghost:latest if you don't want to build/host it yourself)
+1. The ghost Docker image to pull (you can use ebr00ks/ghost:latest if you don't want to build/host it yourself)
 1. The IAM principal (user or role) that can administer the KMS key for the RDS.
     1. If in doubt, use the root account in the form of `arn:aws:iam::111122223333:root` where the number is your account number
     1. An IAM user ARN will be in the form `arn:aws:iam::111122223333:user/KMSAdminUser`
@@ -54,6 +54,6 @@ The `ghost-container/ghost-container-build.json` Template sets up a CodeBuild pr
 
 The `ghost-container/ghost-container-build-pipeline.json` Template sets up a CodePipeline to watch the CodeCommit repo and run the build and deploy on changes
 
-The `quickstart/clair-deploy-fargate.json` Template deploys the Clair scanner used by CodeBuild. For more information on that see (https://github.com/jasonumiker/clair-ecs-fargate)
+The `quickstart/clair-deploy-fargate.json` Template deploys the Clair scanner used by CodeBuild. For more information on that see (https://github.com/ebr00ks/clair-ecs-fargate)
 
 These templates were created by using Troposphere (https://github.com/cloudtools/troposphere) in the corresponding `.py` files.

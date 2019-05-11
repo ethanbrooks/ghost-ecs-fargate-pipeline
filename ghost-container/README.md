@@ -1,7 +1,7 @@
 # ghost IAM RDS auth container build
 I cloned this from the official Docker build scripts at https://github.com/docker-library/ghost and then changed it as required to allow Ghost to use IAM authentication to the MySQL RDS.
 
-This container is already built (using CodeBuild against the buildspec in the folder) and published on the public hub.docker.com as `jasonumiker/ghost:latest` if you'd prefer not to build it yourself.
+This container is already built (using CodeBuild against the buildspec in the folder) and published on the public hub.docker.com as `ethanbrooks/ghost:latest` if you'd prefer not to build it yourself.
 
 NOTE: The changes versus the upstream ghost container may now actually require you to use IAM authentication against the underlying MySQL - I have not tested a non-SSL and/or password login after the changes. 
 ## Instructions

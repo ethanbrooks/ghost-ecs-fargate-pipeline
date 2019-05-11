@@ -26,7 +26,7 @@
             "Type": "String"
         },
         "ClairImage": {
-            "Default": "jasonumiker/clair:latest",
+            "Default": "ebr00ks/clair:latest",
             "Description": "The Clair container image to deploy.",
             "Type": "String"
         },

@@ -37,7 +37,7 @@
             "Type": "String"
         },
         "GhostImage": {
-            "Default": "jasonumiker/ghost:latest",
+            "Default": "ebr00ks/ghost:latest",
             "Description": "The Ghost image to deploy",
             "Type": "String"
         },
@@ -57,7 +57,7 @@
                     "ClairDBPassword": {
                         "Ref": "DBPassword"
                     },
-                    "ClairImage": "jasonumiker/clair:latest",
+                    "ClairImage": "ebr00ks/clair:latest",
                     "ClairSubnet": {
                         "Fn::GetAtt": [
                             "VPCStack",
