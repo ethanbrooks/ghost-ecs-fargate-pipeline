@@ -96,7 +96,7 @@ db_password = t.add_parameter(Parameter(
                     },
                     "Cluster": "Ghost"
                 },
-                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/clair-deploy-fargate.json"
+                "TemplateURL": "https://s3-eu-west-1.amazonaws.com/ebr00ks-cloud-formation-templates/ghost-ecs-fargate-pipeline/quickstart/clair-deploy-fargate.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
@@ -118,7 +118,7 @@ db_password = t.add_parameter(Parameter(
                         ]
                     }
                 },
-                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/cloud9.json"
+                "TemplateURL": "https://s3-eu-west-1.amazonaws.com/ebr00ks-cloud-formation-templates/ghost-ecs-fargate-pipeline/cloud9.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
@@ -170,7 +170,7 @@ db_password = t.add_parameter(Parameter(
                         "Ref": "KeyAdminARN"
                     }
                 },
-                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/dependencies.json"
+                "TemplateURL": "https://s3-eu-west-1.amazonaws.com/ebr00ks-cloud-formation-templates/ghost-ecs-fargate-pipeline/dependencies.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
@@ -208,7 +208,7 @@ db_password = t.add_parameter(Parameter(
                         ]
                     }
                 },
-                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/ghost-container-build.json"
+                "TemplateURL": "https://s3-eu-west-1.amazonaws.com/ebr00ks-cloud-formation-templates/ghost-ecs-fargate-pipeline/ghost-container/ghost-container-build.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
@@ -225,7 +225,7 @@ db_password = t.add_parameter(Parameter(
                     },
                     "ECSClusterName": "Ghost"
                 },
-                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/ghost-container-build-pipeline.json"
+                "TemplateURL": "https://s3-eu-west-1.amazonaws.com/ebr00ks-cloud-formation-templates/ghost-ecs-fargate-pipeline/ghost-container/ghost-container-build-pipeline.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
@@ -246,20 +246,20 @@ db_password = t.add_parameter(Parameter(
                         ]
                     }
                 },
-                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/init-codecommit.json"
+                "TemplateURL": "https://s3-eu-west-1.amazonaws.com/ebr00ks-cloud-formation-templates/ghost-ecs-fargate-pipeline/init-codecommit/init-codecommit.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
         "InitDBLambdaBuild": {
             "Properties": {
-                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/init-db-lambda-build.json"
+                "TemplateURL": "https://s3-eu-west-1.amazonaws.com/ebr00ks-cloud-formation-templates/ghost-ecs-fargate-pipeline/quickstart/init-db-lambda-build.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
         "InitDBLambdaInit": {
             "DependsOn": "InitDBLambdaBuild",
             "Properties": {
-                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/init-db-lambda-init.json"
+                "TemplateURL": "https://s3-eu-west-1.amazonaws.com/ebr00ks-cloud-formation-templates/ghost-ecs-fargate-pipeline/quickstart/init-db-lambda-init.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
@@ -286,7 +286,7 @@ db_password = t.add_parameter(Parameter(
                     },
                     "NumberOfAZs": "2"
                 },
-                "TemplateURL": "https://s3.amazonaws.com/ghost-ecs-fargate-pipeline/vpc.json"
+                "TemplateURL": "https://s3-eu-west-1.amazonaws.com/ebr00ks-cloud-formation-templates/ghost-ecs-fargate-pipeline/quickstart/vpc.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         }

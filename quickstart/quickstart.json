@@ -78,7 +78,7 @@
                     },
                     "Cluster": "Ghost"
                 },
-                "TemplateURL": "https://s3.console.aws.amazon.com/s3/buckets/ebr00ks-cloud-formation-templates/clair-deploy-fargate.json"
+                "TemplateURL": "https://s3-eu-west-1.amazonaws.com/ebr00ks-cloud-formation-templates/ghost-ecs-fargate-pipeline/quickstart/clair-deploy-fargate.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
@@ -100,7 +100,7 @@
                         ]
                     }
                 },
-                "TemplateURL": "https://s3.console.aws.amazon.com/s3/buckets/ebr00ks-cloud-formation-templates/cloud9.json"
+                "TemplateURL": "https://s3-eu-west-1.amazonaws.com/ebr00ks-cloud-formation-templates/ghost-ecs-fargate-pipeline/quickstart/cloud9.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
@@ -152,7 +152,7 @@
                         "Ref": "KeyAdminARN"
                     }
                 },
-                "TemplateURL": "https://s3.console.aws.amazon.com/s3/buckets/ebr00ks-cloud-formation-templates/dependencies.json"
+                "TemplateURL": "https://s3-eu-west-1.amazonaws.com/ebr00ks-cloud-formation-templates/ghost-ecs-fargate-pipeline/dependencies.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
@@ -190,7 +190,7 @@
                         ]
                     }
                 },
-                "TemplateURL": "https://s3.console.aws.amazon.com/s3/buckets/ebr00ks-cloud-formation-templates/ghost-container-build.json"
+                "TemplateURL": "https://s3-eu-west-1.amazonaws.com/ebr00ks-cloud-formation-templates/ghost-ecs-fargate-pipeline/ghost-container/ghost-container-build.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
@@ -207,7 +207,7 @@
                     },
                     "ECSClusterName": "Ghost"
                 },
-                "TemplateURL": "https://s3.console.aws.amazon.com/s3/buckets/ebr00ks-cloud-formation-templates/ghost-container-build-pipeline.json"
+                "TemplateURL": "https://s3-eu-west-1.amazonaws.com/ebr00ks-cloud-formation-templates/ghost-ecs-fargate-pipeline/ghost-container-build-pipeline.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
@@ -228,20 +228,20 @@
                         ]
                     }
                 },
-                "TemplateURL": "https://s3.console.aws.amazon.com/s3/buckets/ebr00ks-cloud-formation-templates/init-codecommit.json"
+                "TemplateURL": "https://s3-eu-west-1.amazonaws.com/ebr00ks-cloud-formation-templates/ghost-ecs-fargate-pipeline/quickstart/init-codecommit.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
         "InitDBLambdaBuild": {
             "Properties": {
-                "TemplateURL": "https://s3.console.aws.amazon.com/s3/buckets/ebr00ks-cloud-formation-templates/init-db-lambda-build.json"
+                "TemplateURL": "https://s3-eu-west-1.amazonaws.com/ebr00ks-cloud-formation-templates/ghost-ecs-fargate-pipeline/init-db-lambda/init-db-lambda-build.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
         "InitDBLambdaInit": {
             "DependsOn": "InitDBLambdaBuild",
             "Properties": {
-                "TemplateURL": "https://s3.console.aws.amazon.com/s3/buckets/ebr00ks-cloud-formation-templates/init-db-lambda-init.json"
+                "TemplateURL": "https://s3-eu-west-1.amazonaws.com/ebr00ks-cloud-formation-templates/ghost-ecs-fargate-pipeline/quickstart/init-db-lambda-init.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         },
@@ -268,7 +268,7 @@
                     },
                     "NumberOfAZs": "2"
                 },
-                "TemplateURL": "https://s3.console.aws.amazon.com/s3/buckets/ebr00ks-cloud-formation-templates/vpc.json"
+                "TemplateURL": "https://s3-eu-west-1.amazonaws.com/ebr00ks-cloud-formation-templates/ghost-ecs-fargate-pipeline/quickstart/vpc.json"
             },
             "Type": "AWS::CloudFormation::Stack"
         }
